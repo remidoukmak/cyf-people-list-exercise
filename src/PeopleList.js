@@ -31,11 +31,19 @@ import React, { useState } from "react";
 const PeopleList = () => {
   const [people, setPeople] = useState(["Dave", "Alice", "Bob"]);
   const [newName, setNewName] = useState("");
+  const [removeName, setRemoveName] = useState("");
 
   function addNewPerson() {
     const newPeople = [...people, newName];
     setPeople(newPeople);
   }
+
+  function removeLastPerson() {
+    const newPeople = people.filter((person) => person !== removeName);
+    setPeople(newPeople);
+  }
+
+  // arr = arr.filter((item) => item !== value);
 
   return (
     <div>
@@ -54,6 +62,11 @@ const PeopleList = () => {
           />
         </label>
         <button onClick={addNewPerson}>Add person</button>
+        <button onClick={removeLastPerson}>Remove last person</button>
+        <input
+          type="text"
+          onChange={(event) => setRemoveName(event.target.value)}
+        />
       </div>
     </div>
   );
